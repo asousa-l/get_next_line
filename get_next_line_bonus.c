@@ -59,7 +59,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = malloc(BUFFER_SIZE + 1);
+	buff = malloc(BUFFER_SIZE + 1);
 	if (!buff)
 		return (NULL);
 	n = read(fd, buff, BUFFER_SIZE);
@@ -75,6 +75,6 @@ char	*get_next_line(int fd)
 			break ;
 		n = read(fd, buff, BUFFER_SIZE);
 	}
-	free(buf)f;
+	free(buff);
 	return (check_and_return(s, n, fd));
 }
