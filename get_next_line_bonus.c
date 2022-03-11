@@ -53,28 +53,28 @@ static char	*check_and_return(char **s, ssize_t n, int fd)
 char	*get_next_line(int fd)
 {
 	char		*tmp;
-	char		*buf;
+	char		*buff;
 	static char	*s[FD_SIZE];
 	ssize_t		n;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	buf = malloc(BUFFER_SIZE + 1);
-	if (!buf)
+	if (!buff)
 		return (NULL);
-	n = read(fd, buf, BUFFER_SIZE);
+	n = read(fd, buff, BUFFER_SIZE);
 	while (n > 0)
 	{
-		buf[n] = '\0';
+		buff[n] = '\0';
 		if (!s[fd])
 			s[fd] = ft_strdup("");
-		tmp = ft_strjoin(s[fd], buf);
+		tmp = ft_strjoin(s[fd], buff);
 		free(s[fd]);
 		s[fd] = tmp;
-		if (ft_strchr(buf, '\n'))
+		if (ft_strchr(buff, '\n'))
 			break ;
-		n = read(fd, buf, BUFFER_SIZE);
+		n = read(fd, buff, BUFFER_SIZE);
 	}
-	free(buf);
+	free(buf)f;
 	return (check_and_return(s, n, fd));
 }
