@@ -12,85 +12,85 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *line)
 {
 	size_t	cnt;
 
 	cnt = 0;
-	while (s[cnt])
+	while (line[cnt])
 		cnt++;
 	return (cnt);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *line, int c)
 {
 	if (c == '\0')
-		return ((char *)&s[ft_strlen(s)]);
-	while (*s)
+		return ((char *)&line[ft_strlen(line)]);
+	while (*line)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		if (*line == (char)c)
+			return ((char *)line);
+		line++;
 	}
 	return (NULL);
 }
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *line)
 {
-	char	*cpy;
-	char	*save;
+	char	*a;
+	char	*b;
 	size_t	len;
 
-	len = ft_strlen(s1);
-	cpy = malloc(len + 1);
-	if (!cpy)
+	len = ft_strlen(line);
+	a = malloc(len + 1);
+	if (!a)
 		return (NULL);
-	save = cpy;
-	while (*s1)
-		*cpy++ = *s1++;
-	*cpy = '\0';
-	return (save);
+	b = a;
+	while (*line)
+		*a++ = *line++;
+	*a = '\0';
+	return (b);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*save;
-	char	*out;
+	char	*b;
+	char	*join;
 
 	if (!s1 || !s2)
 		return (NULL);
-	out = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
-	if (!out)
+	join = malloc(ft_strlen(s1) + ft_strlen(s2) + 1);
+	if (!join)
 		return (NULL);
-	save = out;
+	b = join;
 	while (*s1)
-		*out++ = *s1++;
+		*join++ = *s1++;
 	while (*s2)
-		*out++ = *s2++;
-	*out = '\0';
-	return (save);
+		*join++ = *s2++;
+	*join = '\0';
+	return (b);
 }
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *line, unsigned int start, size_t len)
 {
-	size_t	out_len;
-	char	*save;
-	char	*out;
+	size_t	join_len;
+	char	*b;
+	char	*join;
 
-	if (!s)
+	if (!line)
 		return (NULL);
-	if (ft_strlen(s) < start)
+	if (ft_strlen(line) < start)
 		return (ft_strdup(""));
-	out_len = ft_strlen(s + start);
-	if (out_len < len)
-		len = out_len;
-	out = malloc(len + 1);
-	if (!out)
+	join_len = ft_strlen(line + start);
+	if (join_len < len)
+		len = join_len;
+	join = malloc(len + 1);
+	if (!join)
 		return (NULL);
-	save = out;
-	s += start;
-	while (*s && len--)
-		*out++ = *s++;
-	*out = '\0';
-	return (save);
+	b = join;
+	line += start;
+	while (*line && len--)
+		*join++ = *line++;
+	*join = '\0';
+	return (b);
 }
